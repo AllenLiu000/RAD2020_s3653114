@@ -11,18 +11,8 @@
   </span>
   <p><%= @user.city %></p>
     </section>
-  </aside>
-  <div class="col-md-8">
-    <% if @microposts.any? %>
-      <h3>Recent Posts (<%= @microposts.count %>)</h3>
-      <ol class="microposts">
-        <%= render @microposts %>
-      </ol>
-      <%= will_paginate @microposts %>
-    <% end %>
-  </div>
-
-  <div class="col-md-8">
+    
+    <div class="col-md-8">
   <% if @user.comments.any? %>
     <h3>Recent Comments (<%= @user.comments.count %>)</h3>
     <% @user.comments.each do |comment| %>
@@ -36,5 +26,15 @@
       </li>
     <% end %>
   <% end %>
+  </div>
+  </aside>
+  <div class="col-md-8">
+    <% if @microposts.any? %>
+      <h3>Recent Posts (<%= @microposts.count %>)</h3>
+      <ol class="microposts">
+        <%= render @microposts %>
+      </ol>
+      <%= will_paginate @microposts %>
+    <% end %>
   </div>
 </div>
