@@ -1,0 +1,72 @@
+<% provide(:title, "Home") %>
+<div class="row">
+    <div class="col-md-8">
+    <div class="container">
+      <nav>
+        <ul class="nav navbar-nav">
+          <li><%= link_to "Recent Post", root_path %></li>
+          <li><%= link_to "Selected Post", select_path %></li>
+
+          <% if logged_in? %>
+          <%= link_to "New Post", new_micropost_path,  class: "btn btn-lg btn-primary" %>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
+    <div style="position:absolute; height:500px; overflow:auto; width:100%">
+      <% if @microposts.any? %>
+        <ol class="microposts">
+          <%= render @microposts %>
+        </ol>
+      <% end %>
+    </div>
+  </div>
+
+  <aside class="col-md-4">
+
+  <div class="col-md-8">
+  <% if @actives.any? %>
+    <h3>Recent Members</h3>
+    <ol class="users">
+      <%= render @actives %>
+    </ol>
+  <% end %>
+  </div>
+
+  <div class="col-md-8">
+  <h3>Topic</h3>
+  <% if Topic.find(1).status == 1 %>
+    <%= button_to 'Game', static_pages_selectTopic_path(id:1), method: :post, class: "select"%>
+  <% else %>
+    <%= button_to 'Game', static_pages_selectTopic_path(id:1), method: :post %>
+  <% end %>
+
+  <% if Topic.find(2).status == 1 %>
+    <%= button_to 'A.I.', static_pages_selectTopic_path(id:2), method: :post, class: "select"%>
+  <% else %>
+    <%= button_to 'A.I.', static_pages_selectTopic_path(id:2), method: :post %>
+  <% end %>
+
+  <% if Topic.find(3).status == 1 %>
+    <%= button_to 'RMIT', static_pages_selectTopic_path(id:3), method: :post, class: "select"%>
+  <% else %>
+    <%= button_to 'RMIT', static_pages_selectTopic_path(id:3), method: :post %>
+  <% end %>
+
+  <% if Topic.find(4).status == 1 %>
+    <%= button_to 'V.R.', static_pages_selectTopic_path(id:4), method: :post, class: "select"%>
+  <% else %>
+    <%= button_to 'V.R.', static_pages_selectTopic_path(id:4), method: :post %>
+  <% end %>
+
+</div>
+
+<div class="col-md-8">
+<h3>Links</h3>
+    <li><a href="https://www.rmit.edu.au/">RMIT</a></li>
+    <li><a href="http://news.railstutorial.org/">Rails</a></li>
+</div>
+
+
+</aside>
+</div>

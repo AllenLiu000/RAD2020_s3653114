@@ -1,0 +1,19 @@
+<div id="comment-form">
+<%= form_for(@micropost) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+
+    <div class="field">
+    <%= f.label :topic %>
+      <%= f.select(:topic, options_for_select([['Game','Game'], ['A.I.','A.I.'], ['RMIT','RMIT'],['V.R.','V.R.']])) %>
+    </div>
+    <div class="field">
+    <%= f.label :title %>
+      <%= f.text_area :title, placeholder: "Enter post title here" %>
+    </div>
+    <div class="field">
+      <%= f.text_area :content, placeholder: "Enter your post here" %>
+    </div>
+    <%= f.submit "Post", class: "btn btn-primary" %>
+  <% end %>
+
+</div>
