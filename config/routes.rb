@@ -17,4 +17,5 @@ Rails.application.routes.draw do
   resources :microposts
   resources :actives,          only: [:create]
   resources :comments
+  resources :verifications
 end

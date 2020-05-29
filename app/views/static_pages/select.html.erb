@@ -1,6 +1,6 @@
 <% provide(:title, "Select") %>
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-9">
     <div class="container">
       <nav>
         <ul class="nav navbar-nav">
@@ -13,7 +13,7 @@
         </ul>
       </nav>
     </div>
-    <div style="position:absolute; height:500px; overflow:auto; width:100%">
+    <div class = "news">
       <% if @microposts.any? %>
         <ol class="microposts">
           <%= render @microposts %>
@@ -22,18 +22,18 @@
     </div>
   </div>
 
-  <aside class="col-md-4">
+  <aside class="col-md-3">
 
-  <div class="col-md-8">
-  <% if @actives.any? %>
     <h3>Recent Members</h3>
-    <ol class="users">
-      <%= render @actives %>
-    </ol>
-  <% end %>
-  </div>
+    <div class = "recent">
+      <% if @actives.any? %>
+        <ol class="users">
+          <%= render @actives %>
+        </ol>
+      <% end %>
+    </div>
 
-  <div class="col-md-8">
+  <div>
   <h3>Topic</h3>
   <% if Topic.find(1).status == 1 %>
     <%= button_to 'Game', static_pages_selectTopic_path(id:1), method: :post, class: "select"%>
@@ -61,7 +61,7 @@
 
 </div>
 
-<div class="col-md-8">
+<div>
 <h3>Links</h3>
     <li><a href="https://www.rmit.edu.au/">RMIT</a></li>
     <li><a href="http://news.railstutorial.org/">Rails</a></li>

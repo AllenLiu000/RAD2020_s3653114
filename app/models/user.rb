@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_many :microposts, dependent: :destroy
   has_many :actives
   has_many :comments
+  has_many :verifications
   
   attr_accessor :remember_token
     before_save { self.email = email.downcase }
@@ -13,9 +14,9 @@ class User < ApplicationRecord
     uniqueness: { case_sensitive: false }
     
     has_secure_password
-    validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+    validates :password, presence: true, length: { in: 8..20 }, allow_nil: true, format: { with: /\A[a-zA-Z0-9]+\z/, message: "no special characters allowed."}
     
-    validates :mobile, presence: true, length: { is: 10 }
+    validates :mobile, presence: true, length: { in: 10..13 }, format: { with: /\A\d+\z/, message: "integer only." }
 
     validates :city, presence: true
 

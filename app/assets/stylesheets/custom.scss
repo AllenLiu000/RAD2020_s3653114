@@ -259,13 +259,24 @@ span.picture {
 }
 
 .right1 {
-  position: absolute;
-  right: 0px;
-  width: 500px;
+  margin-left: 30px;
 }
 
 .right2 {
-  position: absolute;
-  right: 0px;
-  width: 200px;
+  margin-right: 30px;
+  float: right;
+}
+
+.news {
+  position: static;
+  height: 500px;
+  overflow: auto;
+  width: 100%;
+}
+
+.recent {
+  position: static;
+  height: 200px;
+  overflow: auto;
+  width: 100%;
 }

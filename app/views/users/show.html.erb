@@ -1,40 +1,58 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-  <aside class="col-md-4">
+  <aside class="col-md-2">
+    <li><%= link_to "My Profile", edit_user_path(current_user) %></li>
+    <li><%= link_to "My Posts", edit_user_path(current_user) %></li>
+    <li><%= link_to "My Comments", edit_user_path(current_user) %></li>
+    <li><%= link_to "Comments to Me", edit_user_path(current_user) %></li>
+    <li><%= link_to "Setting", edit_user_path(current_user) %></li>
+  </aside>
+
+  <div class="col-md-10">
     <section class="user_info">
       <h1>
         <%= gravatar_for @user %>
-        <%= @user.name %>
       </h1>
+      <h3>  
+          <%= @user.name %>
+      </h3>
       <span class="timestamp">
-    Join in : <%= time_ago_in_words(@user.created_at) %> ago.
-  </span>
-  <p><%= @user.city %></p>
-    </section>
-    
-    <div class="col-md-8">
-  <% if @user.comments.any? %>
-    <h3>Recent Comments (<%= @user.comments.count %>)</h3>
-    <% @user.comments.each do |comment| %>
-      <% micropost = Micropost.find(comment.micropost_id)%>
-      <li id="comment-<%= comment.id %>">
-      <span class="timestamp"><%= link_to micropost.title, micropost %></span>
-      <span class="timestamp">
-      Posted <%= time_ago_in_words(comment.created_at) %> ago.
+        <%= @user.created_at %>
       </span>
-      <p class="content"><%= comment.content %></p>
-      </li>
-    <% end %>
-  <% end %>
+      <span class="right1">
+        <%= @user.city %>
+      </span>
+    </section>
+
+    <div class="col-md-7">
+      <div class="news">
+        <% if @microposts.any? %>
+          <h3>Recent Posts (<%= @microposts.count %>)</h3>
+          <ol class="microposts">
+            <%= render @microposts %>
+          </ol>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-md-5">
+      <div class="news">
+        <% if @user.comments.any? %>
+          <h3>Recent Comments (<%= @user.comments.count %>)</h3>
+          <% @user.comments.each do |comment| %>
+            <% micropost = Micropost.find(comment.micropost_id)%>
+            <li id="comment-<%= comment.id %>">
+            <span class="timestamp"><%= link_to micropost.title, micropost %></span>
+            <span class="timestamp">
+            Posted <%= time_ago_in_words(comment.created_at) %> ago.
+            </span>
+            <p class="content"><%= comment.content %></p>
+            </li>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
   </div>
-  </aside>
-  <div class="col-md-8">
-    <% if @microposts.any? %>
-      <h3>Recent Posts (<%= @microposts.count %>)</h3>
-      <ol class="microposts">
-        <%= render @microposts %>
-      </ol>
-      <%= will_paginate @microposts %>
-    <% end %>
-  </div>
+
 </div>

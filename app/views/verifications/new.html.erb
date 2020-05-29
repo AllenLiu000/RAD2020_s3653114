@@ -1,0 +1,18 @@
+<div id="verification-form">
+  <%= form_for(@verification) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+
+    <div class="field">
+    <%= f.label :cardtype, 'Type of Card'  %>
+      <%= f.text_area :cardtype, placeholder: "Please enter your full name" %>
+    </div>
+    <div class="field">
+    <%= f.label :cardnumber, 'Card Number'  %>
+      <%= f.text_area :cardnumber, placeholder: "Please enter your student number" %>
+    </div>
+    <span class="picture">
+      <%= f.file_field :picture %>
+    </span>
+    <%= f.submit "confirm", class: "btn btn-primary" %>
+  <% end %>
+</div>

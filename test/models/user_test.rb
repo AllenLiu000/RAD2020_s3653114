@@ -4,7 +4,7 @@ class UserTest < ActiveSupport::TestCase
 
   def setup
     @user = User.new(name: "Example User", email: "user@example.com",
-                     password: "foobar", password_confirmation: "foobar", mobile:"0451000000", city:"Melbourne")
+                     password: "foobar123", password_confirmation: "foobar123", mobile:"0451000000", city:"Melbourne")
   end
 
   test "should be valid" do
@@ -62,7 +62,22 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "password should have a minimum length" do
-    @user.password = @user.password_confirmation = "a" * 5
+    @user.password = @user.password_confirmation = "a" * 7
+    assert_not @user.valid?
+  end
+
+  test "password should have a maximum length" do
+    @user.password = @user.password_confirmation = "a" * 21
+    assert_not @user.valid?
+  end
+
+  test "password validation should accept valid password" do
+    @user.password = @user.password_confirmation = "123456rmit"
+    assert @user.valid?
+  end
+
+  test "password validation should reject invalid password" do
+    @user.password = @user.password_confirmation = "foobar!@#"
     assert_not @user.valid?
   end
 
@@ -75,8 +90,23 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
 
-  test "mobile should be 10 digit" do
+  test "mobile should have a minimum length" do
+    @user.mobile = "1" * 9
+    assert_not @user.valid?
+  end
+
+  test "mobile should have a maximum length" do
+    @user.mobile = "1" * 14
+    assert_not @user.valid?
+  end
+
+  test "mobile validation should accept valid mobile" do
     @user.mobile = "1" * 11
+    assert @user.valid?
+  end
+
+  test "mobile validation should reject invalid mobile" do
+    @user.mobile = "a" * 11
     assert_not @user.valid?
   end
 

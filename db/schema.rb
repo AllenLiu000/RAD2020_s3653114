@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_22_115745) do
+ActiveRecord::Schema.define(version: 2020_05_29_132446) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,8 +65,19 @@ ActiveRecord::Schema.define(version: 2020_05_22_115745) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  create_table "verifications", force: :cascade do |t|
+    t.text "cardtype"
+    t.text "cardnumber"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "picture"
+    t.index ["user_id"], name: "index_verifications_on_user_id"
+  end
+
   add_foreign_key "actives", "users"
   add_foreign_key "comments", "microposts"
   add_foreign_key "comments", "users"
   add_foreign_key "microposts", "users"
+  add_foreign_key "verifications", "users"
 end

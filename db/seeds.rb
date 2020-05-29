@@ -9,8 +9,8 @@
 
 User.create!(name:  "Example User",
              email: "example@railstutorial.org",
-             password:              "foobar",
-             password_confirmation: "foobar",
+             password:              "foobar000",
+             password_confirmation: "foobar000",
              mobile: "0451000000", 
              city: "Melbourne",
              admin: true)
