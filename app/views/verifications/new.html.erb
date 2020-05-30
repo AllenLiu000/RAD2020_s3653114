@@ -1,18 +1,48 @@
-<div id="verification-form">
+<% provide(:title, "verification") %>
+<h1>Update your verification</h1>
+
+<div class="row">
+
+<%= render 'users/menu' %>
+
+<div class="col-md-10">
+
+<nav>
+  <ul class="nav navbar-nav">
+    <li><%= link_to "Personal Info", edit_user_path(current_user) %></li>
+    <li><%= link_to "Avatar", avatar_path %></li>
+    <li><%= link_to "Password", password_path %></li>
+    <li><%= link_to "verification", new_verification_path %></li>
+  </ul>
+</nav>
+
+<div class="col-md-8 col-md-offset-1">
   <%= form_for(@verification) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
 
-    <div class="field">
     <%= f.label :cardtype, 'Type of Card'  %>
       <%= f.text_area :cardtype, placeholder: "Please enter your full name" %>
-    </div>
-    <div class="field">
+
     <%= f.label :cardnumber, 'Card Number'  %>
       <%= f.text_area :cardnumber, placeholder: "Please enter your student number" %>
-    </div>
+
     <span class="picture">
-      <%= f.file_field :picture %>
-    </span>
+      <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+  ​  </span>
     <%= f.submit "confirm", class: "btn btn-primary" %>
   <% end %>
+  </div>
+</div>
+</div>
+  
+
+
+  <script type="text/javascript">
+  $('#verification_picture').bind('change', function() {
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 2) {
+      alert('Maximum file size is 2MB. Please choose a smaller file.');
+    }
+  });
+</script>
 </div>

@@ -20,6 +20,10 @@ class User < ApplicationRecord
 
     validates :city, presence: true
 
+    mount_uploader :avatar, PictureUploader
+
+    validate  :avatar_size
+
     # Returns the hash digest of the given string.
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
@@ -54,4 +58,13 @@ class User < ApplicationRecord
   def feed
     Micropost.where("user_id = ?", id)
   end
+
+  private
+
+    # Validates the size of an uploaded picture.
+    def avatar_size
+      if avatar.size > 2.megabytes
+        errors.add(:avatar, "should be less than 2MB")
+      end
+    end
 end

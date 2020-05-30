@@ -29,6 +29,7 @@ class MicropostsController < ApplicationController
     end
 
     def show
+      @actives = Active.first(12)
       @micropost = Micropost.find(params[:id])
       views_count = @micropost.views_count + 1
       @micropost.update_attribute(:views_count, views_count)

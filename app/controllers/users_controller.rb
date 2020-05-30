@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
-  before_action :correct_user,   only: [:edit, :update]
+  before_action :logged_in_user, only: [:index, :edit, :update, :passwordedit, :destroy]
+  before_action :correct_user,   only: [:edit, :update, :passwordedit]
   before_action :admin_user,     only: :destroy
 
   def index
@@ -51,7 +51,7 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password,
-                                 :password_confirmation, :mobile, :city)
+                                 :password_confirmation, :mobile, :city, :avatar)
   end
 
   # Before filters

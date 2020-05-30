@@ -1,25 +1,34 @@
 <% provide(:title, @micropost.id) %>
-<h1>
-  <%= @micropost.title %>
-</h1>
-<p><%= @micropost.topic %></p>
-<p><%= @micropost.content %></p>
 
-    <% if @micropost.comments.any? %>
-      <h3>Comments (<%= @micropost.comments.count %>)</h3>
-      <% @micropost.comments.each do |comment| %>
-        <% user = User.find(comment.user_id)%>
-        <li id="comment-<%= comment.id %>">
-        <%= link_to gravatar_for(user, size: 50), user %>
-        <span class="user"><%= link_to user.name, user %></span>
-        <span class="timestamp">
+<div class="row">
+  <div class="col-md-9">
+  <h1>
+    <%= @micropost.title %>
+  </h1>
+  <p><%= @micropost.topic %></p>
+  <span class="right2">comment: <%= @micropost.comments.count %> views: <%= @micropost.views_count %></span>
+  <p><%= @micropost.content %></p>
+
+    
+  <h3>Comments (<%= @micropost.comments.count %>)</h3>
+  <% if @micropost.comments.any? %>
+    <% @micropost.comments.each do |comment| %>
+      <% user = User.find(comment.user_id)%>
+      <li id="comment-<%= comment.id %>">
+      <%= link_to gravatar_for(user, size: 50), user %>
+      <span class="user"><%= link_to user.name, user %></span>
+      <span class="timestamp">
         Posted <%= time_ago_in_words(comment.created_at) %> ago.
-        </span>
-        <p class="content"><%= comment.content %></p>
-        </li>
+      </span>
+      <p class="content"><%= comment.content %></p>
+      </li>
       <% end %>
     <% end %>
 
     <% if logged_in? %>
       <p><%= link_to("Add Comment", new_comment_path(micropost_id: @micropost.id)) %></p>
     <% end %>
+  </div>
+
+    <%= render 'static_pages/sidebar' %>
+</div>

@@ -1,4 +1,8 @@
 <li id="active-<%= active.id %>">
-  <%= link_to gravatar_for(active.user, size: 50), active.user %>
+  <% if active.user.avatar? %>
+    <%= image_tag active.user.avatar.url, size: 50 %>
+  <% else %>
+    <%= gravatar_for active.user, size: 50 %>
+  <% end %>  
   <span class="user"><%= link_to active.user.name, active.user %></span>
 </li>
