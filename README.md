@@ -3,6 +3,7 @@
 1. Run `docker-compose build` after every Gemfile change or to build the containers
 
 ## Running the rails App
+
 1. Run `docker-compose up` to run the rails app
 2. hit `http://0.0.0.0:3000`
 
@@ -23,3 +24,13 @@
 7. `docker-compose run --rm web rails assets:precompile`
 8. `docker-compose run --rm web rails console`
 9. `docker-compose run --rm web rails test`
+
+## Student Name: Yuhao Liu Student Number: s3653114
+
+## The highest level I attempted: 80+ level
+
+## Time sheet: individual assignment so all the work done by myself
+
+## Heroku deployment URL: https://s3653114-radassignment.herokuapp.com/
+
+## The last Heroku deployment log:
