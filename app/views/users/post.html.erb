@@ -1,0 +1,36 @@
+<% provide(:title, @user.name) %>
+<div class="row">
+  <%= render 'menu' %>
+
+  <div class="col-md-10">
+    <section class="user_info">
+      <h1>
+        <% if @user.avatar? %>
+          <%= image_tag @user.avatar.url, size: 100 %>
+        <% else %>
+          <%= gravatar_for @user, size: 100 %>
+        <% end %>
+      </h1>
+      <h3>  
+          <%= @user.name %>
+      </h3>
+      <span class="timestamp">
+        <%= @user.created_at %>
+      </span>
+      <span class="right1">
+        <%= @user.city %>
+      </span>
+    </section>
+
+      <div class="news">
+      <h3>My Posts (<%= @microposts.count %>)</h3>
+        <% if @microposts.any? %>
+          <ol class="microposts">
+            <%= render @microposts %>
+          </ol>
+        <% end %>
+      </div>
+
+  </div>
+
+</div>

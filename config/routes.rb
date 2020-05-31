@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   post 'static_pages/selectTopic'
   get  '/password',    to: 'password_resets#edit'
   get  '/avatar',    to: 'avatars#edit'
+  get  '/myposts',    to: 'users#post'
+  get  '/mycomments',    to: 'users#comment'
+  get  '/commentstome',    to: 'users#commenttome'
   resources :users
   resources :microposts
   resources :actives,          only: [:create]

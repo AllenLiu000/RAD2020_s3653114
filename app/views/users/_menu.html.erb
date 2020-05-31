@@ -1,7 +1,9 @@
 <aside class="col-md-2">
-    <li><%= link_to "My Profile", edit_user_path(current_user) %></li>
-    <li><%= link_to "My Posts", edit_user_path(current_user) %></li>
-    <li><%= link_to "My Comments", edit_user_path(current_user) %></li>
-    <li><%= link_to "Comments to Me", edit_user_path(current_user) %></li>
+  <div class="sidenav">
+    <li><%= link_to "My Profile", current_user %></li>
+    <li><%= link_to "My Posts", myposts_path %></li>
+    <li><%= link_to "My Comments", mycomments_path %></li>
+    <li><%= link_to "Comments to Me", commentstome_path %></li>
     <li><%= link_to "Setting", edit_user_path(current_user) %></li>
+  </div>
 </aside>

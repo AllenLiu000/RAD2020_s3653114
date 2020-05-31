@@ -3,6 +3,10 @@ class StaticPagesController < ApplicationController
   def home
     @actives = Active.first(12)
     @microposts = Micropost.first(30)
+    @topics = Topic.all
+    @topics.each do |topic|
+      topic.update_attribute(:status, 0)
+    end
   end
 
   def help

@@ -47,6 +47,21 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
+  def post
+    @user= User.find(session[:user_id])
+    @microposts = @user.microposts
+  end
+
+  def comment
+    @user= User.find(session[:user_id])
+    @comments = @user.comments
+  end
+
+  def commenttome
+    @user= User.find(session[:user_id])
+    @microposts = @user.microposts
+  end
+
   private
 
   def user_params
